@@ -17,4 +17,13 @@ public class mainmenu : MonoBehaviour
         Application.Quit();    
     
     }
+
+    public void setVolume(float volume)
+    {
+        // volume: Requires a float value from 0 to 1
+        //
+        // Will set volume globally as it is modifying
+        // a static value.
+        AudioListener.volume = volume;
+    }
 }
