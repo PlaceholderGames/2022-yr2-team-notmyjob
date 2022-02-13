@@ -28,12 +28,38 @@ public class PlayerInput : MonoBehaviour
         switch(direction)
         {
             case PlayerDirection.HORIZONTAL:
-                return GetMouseOrStickLookAxis("Mouse X", "");
+                return GetMouseOrStickLookAxis("Mouse X", InvertXAxis);
             case PlayerDirection.VERTICAL:
-                return GetMouseOrStickLookAxis("Mouse Y", "");
+                return GetMouseOrStickLookAxis("Mouse Y", InvertYAxis);
             default:
                 throw new ArgumentException("Invalid parameter", nameof(direction));
         }
+    }
+
+    public Vector3 getMove()
+    {
+        if (CanProcessInput())
+        {
+            Vector3 move = new Vector3(Input.GetAxisRaw("Horizontal"), 0f,
+                Input.GetAxisRaw("Vertical"));
+
+            // constrain move input to a maximum magnitude of 1, otherwise diagonal movement might exceed the max move speed defined
+            move = Vector3.ClampMagnitude(move, 1);
+
+            return move;
+        }
+
+        return Vector3.zero;
+    }
+
+    public bool handleButtonInput(string axis)
+    {
+        if (CanProcessInput())
+        {
+            return Input.GetButton(axis);
+        }
+
+        return false;
     }
 
     public bool CanProcessInput()
@@ -41,35 +67,25 @@ public class PlayerInput : MonoBehaviour
         return Cursor.lockState == CursorLockMode.Locked;
     }
 
-    float GetMouseOrStickLookAxis(string mouseInputName, string stickInputName)
+    float GetMouseOrStickLookAxis(string mouseInputName, bool invert)
     {
         if (CanProcessInput())
         {
-            // Check if this look input is coming from the mouse
-            bool isGamepad = false; //Input.GetAxis(stickInputName) != 0f;
-            float i = isGamepad ? Input.GetAxis(stickInputName) : Input.GetAxisRaw(mouseInputName);
+            float i = Input.GetAxisRaw(mouseInputName);
 
             // handle inverting vertical input
-            if (InvertYAxis)
+            if (invert)
                 i *= -1f;
 
             // apply sensitivity multiplier
             i *= LookSensitivity;
 
-            if (isGamepad)
-            {
-                // since mouse input is already deltaTime-dependant, only scale input with frame time if it's coming from sticks
-                i *= Time.deltaTime;
-            }
-            else
-            {
-                // reduce mouse input amount to be equivalent to stick movement
-                i *= 0.01f;
+            // reduce mouse input amount to be equivalent to stick movement
+            i *= 0.01f;
 #if UNITY_WEBGL
-                    // Mouse tends to be even more sensitive in WebGL due to mouse acceleration, so reduce it even more
-                    i *= WebglLookSensitivityMultiplier;
+            // Mouse tends to be even more sensitive in WebGL due to mouse acceleration, so reduce it even more
+            i *= WebglLookSensitivityMultiplier;
 #endif
-            }
 
             return i;
         }
