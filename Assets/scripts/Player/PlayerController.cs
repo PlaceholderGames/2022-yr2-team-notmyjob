@@ -221,7 +221,7 @@ public class PlayerController : MonoBehaviour
         }
 
         // character movement handling
-        bool isSprinting = playerInput.handleButtonInput("Sprint");
+        bool isSprinting = playerInput.handleButtonInput("Sprint", InputMode.HOLD);
         {
             if (isSprinting)
             {
@@ -248,7 +248,7 @@ public class PlayerController : MonoBehaviour
                     movementSharpnessOnGround * Time.deltaTime);
 
                 // jumping
-                if (IsGrounded && playerInput.handleButtonInput("Jump"))
+                if (IsGrounded && playerInput.handleButtonInput("Jump", InputMode.HOLD))
                 {
                     // force the crouch state to false
                     if (SetCrouchingState(false, false))
@@ -400,5 +400,10 @@ public class PlayerController : MonoBehaviour
     bool IsNormalUnderSlopeLimit(Vector3 normal)
     {
         return Vector3.Angle(transform.up, normal) <= controller.slopeLimit;
+    }
+
+    public PlayerInput getPlayerInput()
+    {
+        return playerInput;
     }
 }

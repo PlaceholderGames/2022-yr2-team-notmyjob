@@ -52,11 +52,19 @@ public class PlayerInput : MonoBehaviour
         return Vector3.zero;
     }
 
-    public bool handleButtonInput(string axis)
+    public bool handleButtonInput(string axis, InputMode mode)
     {
         if (CanProcessInput())
         {
-            return Input.GetButton(axis);
+            switch (mode)
+            {
+                case InputMode.HOLD:
+                    return Input.GetButton(axis);
+                case InputMode.PRESS:
+                    return Input.GetButtonDown(axis);
+                default:
+                    return Input.GetButtonDown(axis);
+            }
         }
 
         return false;
@@ -98,4 +106,10 @@ public enum PlayerDirection
 {
     HORIZONTAL,
     VERTICAL
+}
+
+public enum InputMode
+{
+    PRESS,
+    HOLD
 }
