@@ -9,7 +9,7 @@ public class Projectile : MonoBehaviour
     float spawnTime = 0;
 
     // How much force should be applied;
-    float force = 10f;
+    float force;
 
     // Scaling (Negative numbers will decrease in scale, positive will increase)
     public Vector3 scaleChange;
@@ -23,10 +23,14 @@ public class Projectile : MonoBehaviour
 
     void Start()
     {
+#if UNITY_EDITOR
+        force = 10f;
+#else
+        force = 100f;
+#endif
+
         spawnTime = Time.time;
         rigidbody = GetComponent<Rigidbody>();
-
-        rigidbody.useGravity = true;
     }
 
     void Update()
