@@ -36,9 +36,11 @@ public class ScalingGun : MonoBehaviour
         {
             case ScaleType.DECREASE:
                 // Need to handle how scaling is done, e.g. Can the player change the scale, or is the scaling static?
+                projectile.massChange = -projectile.massChange;
                 projectile.scaleChange = new Vector3(-0.1f, -0.1f, -0.1f);
                 break;
             case ScaleType.INCREASE:
+                projectile.massChange = +projectile.massChange;
                 projectile.scaleChange = new Vector3(0.1f, 0.1f, 0.1f);
                 break;
         }

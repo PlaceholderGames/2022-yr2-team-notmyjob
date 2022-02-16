@@ -8,8 +8,12 @@ public class Projectile : MonoBehaviour
     // Time at which the projectile spawned
     float spawnTime = 0;
 
+    public float maxScale = 2.0f;
+    public float minScale = 0.25f;
+
+    public float massChange = 0.1f;
     // How much force should be applied;
-    float force;
+    float force = 10f;
 
     // Scaling (Negative numbers will decrease in scale, positive will increase)
     public Vector3 scaleChange;
@@ -23,14 +27,10 @@ public class Projectile : MonoBehaviour
 
     void Start()
     {
-#if UNITY_EDITOR
-        force = 10f;
-#else
-        force = 100f;
-#endif
-
         spawnTime = Time.time;
         rigidbody = GetComponent<Rigidbody>();
+
+        rigidbody.useGravity = true;
     }
 
     void Update()
@@ -48,9 +48,16 @@ public class Projectile : MonoBehaviour
         if (other.transform.tag == "ScalableObject")
         {
             other.transform.localScale += scaleChange;
-            if(other.transform.localScale.x <= 0)
+            other.GetComponent<Rigidbody>().mass += massChange;
+
+            if(other.transform.localScale.x <= minScale)
             {
-                other.transform.localScale = new Vector3(0.05f, 0.05f, 0.05f);
+                other.transform.localScale = Vector3.one * minScale;
+
+            }
+            if (other.transform.localScale.x >= maxScale)
+            {
+                other.transform.localScale = Vector3.one;
             }
             Destroy(gameObject);
         }
