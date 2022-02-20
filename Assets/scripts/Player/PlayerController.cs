@@ -134,7 +134,8 @@ public class PlayerController : MonoBehaviour
     {
         controller = GetComponent<CharacterController>();
         playerInput = GetComponent<PlayerInput>();
-        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.lockState = GameManager.isPaused() ? CursorLockMode.None : CursorLockMode.Locked;
+        Cursor.visible = GameManager.isPaused();
 
         controller.enableOverlapRecovery = true;
 
@@ -156,6 +157,9 @@ public class PlayerController : MonoBehaviour
         GroundCheck();
 
         // Handle fall damage
+
+        Cursor.lockState = GameManager.isPaused() ? CursorLockMode.None : CursorLockMode.Locked;
+        Cursor.visible = GameManager.isPaused();
 
         UpdateCharacterHeight(true);
         HandleCharacterMovement();
