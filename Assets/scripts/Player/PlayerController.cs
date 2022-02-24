@@ -104,6 +104,9 @@ public class PlayerController : MonoBehaviour
     [Tooltip("Damage recieved when falling at the maximum speed")]
     public float fallDamageAtMaxSpeed = 50f;
 
+    [HideInInspector]
+    public bool canMoveHead;
+
     // public UnityAction<bool> OnStanceChanged;
 
     public Vector3 CharacterVelocity { get; set; }
@@ -132,6 +135,8 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+        GameManager.setPlayer(this);
+
         controller = GetComponent<CharacterController>();
         playerInput = GetComponent<PlayerInput>();
         Cursor.lockState = GameManager.isPaused() ? CursorLockMode.None : CursorLockMode.Locked;
@@ -204,24 +209,32 @@ public class PlayerController : MonoBehaviour
 
     void HandleCharacterMovement()
     {
-        // horizontal character rotation
+        bool grabbedItem = GetComponent<GrabItem>().grabbedItem != null;
+        bool holdingR = Input.GetKey(GameManager.objectRotateButton);
+
+        canMoveHead = (!holdingR && grabbedItem) || (!holdingR && !grabbedItem) || (holdingR && !grabbedItem);
+
+        if (canMoveHead)
         {
-            // rotate the transform with the input speed around its local Y axis
-            transform.Rotate(
-                new Vector3(0f, (playerInput.getLook(PlayerDirection.HORIZONTAL) * rotationSpeed * RotationMultiplier),
-                    0f), Space.Self);
-        }
+            // horizontal character rotation
+            {
+                // rotate the transform with the input speed around its local Y axis
+                transform.Rotate(
+                    new Vector3(0f, (playerInput.getLook(PlayerDirection.HORIZONTAL) * rotationSpeed * RotationMultiplier),
+                        0f), Space.Self);
+            }
 
-        // vertical camera rotation
-        {
-            // add vertical inputs to the camera's vertical angle
-            cameraVerticalAngle += playerInput.getLook(PlayerDirection.VERTICAL) * rotationSpeed * RotationMultiplier;
+            // vertical camera rotation
+            {
+                // add vertical inputs to the camera's vertical angle
+                cameraVerticalAngle += playerInput.getLook(PlayerDirection.VERTICAL) * rotationSpeed * RotationMultiplier;
 
-            // limit the camera's vertical angle to min/max
-            cameraVerticalAngle = Mathf.Clamp(cameraVerticalAngle, -89f, 89f);
+                // limit the camera's vertical angle to min/max
+                cameraVerticalAngle = Mathf.Clamp(cameraVerticalAngle, -89f, 89f);
 
-            // apply the vertical angle as a local rotation to the camera transform along its right axis (makes it pivot up and down)
-            playerCamera.transform.localEulerAngles = new Vector3(cameraVerticalAngle, 0, 0);
+                // apply the vertical angle as a local rotation to the camera transform along its right axis (makes it pivot up and down)
+                playerCamera.transform.localEulerAngles = new Vector3(cameraVerticalAngle, 0, 0);
+            }
         }
 
         // character movement handling

@@ -20,14 +20,7 @@ public class GrabItem : MonoBehaviour
     [Tooltip("This should be an empty gameobject in fornt of the player that will determine the position of the item that is being held")]
     [SerializeField] Transform holdingPoint;
     //this will check if the item has a rigidbody
-    Rigidbody grabbedItem;
-
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public Rigidbody grabbedItem;
 
     // Update is called once per frame
     void Update()
@@ -47,23 +40,14 @@ public class GrabItem : MonoBehaviour
                 grabbedItem = null;
 
             }
-            //this will rotate the object while the player is holding it ->
-            //sadly for now I was able to set it up with key inputs
-            if (Input.GetKeyDown(KeyCode.L))
+
+            if(Input.GetKey(GameManager.objectRotateButton))
             {
-                grabbedItem.transform.Rotate(Vector3.up, -rotatingSpeed);
-            }
-            if (Input.GetKeyDown(KeyCode.K))
-            {
-                grabbedItem.transform.Rotate(Vector3.up, +rotatingSpeed);
-            }
-            if (Input.GetKeyDown(KeyCode.O))
-            {
-                grabbedItem.transform.Rotate(Vector3.right, -rotatingSpeed);
-            }
-            if (Input.GetKeyDown(KeyCode.M))
-            {
-                grabbedItem.transform.Rotate(Vector3.right, +rotatingSpeed);
+                float rotatingX = Input.GetAxis("Mouse X") * rotatingSpeed * Mathf.Deg2Rad;
+                float rotatingY = Input.GetAxis("Mouse Y") * rotatingSpeed * Mathf.Deg2Rad;
+
+                grabbedItem.transform.Rotate(Vector3.up, -rotatingX);
+                grabbedItem.transform.Rotate(Vector3.right, rotatingY);
             }
 
         }
@@ -91,16 +75,5 @@ public class GrabItem : MonoBehaviour
                 }
             }
         }
-    }
-
-    void OnMouseDrag()
-    {   
-        //This will get the mouse input on the X axis
-        float rotatingX = Input.GetAxis("Mouse X") * rotatingSpeed * Mathf.Deg2Rad;
-        //This will get the mouse input on the Y axis
-        float rotatingY = Input.GetAxis("Mouse Y") * rotatingSpeed * Mathf.Deg2Rad;
-
-        grabbedItem.transform.RotateAround(Vector3.up, -rotatingX);
-        grabbedItem.transform.RotateAround(Vector3.right, rotatingY);
     }
 }
