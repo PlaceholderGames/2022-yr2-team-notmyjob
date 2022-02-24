@@ -6,8 +6,10 @@ public class ScalingGun : MonoBehaviour
 {
     PlayerController player;
 
+
     public GameObject projectilePrefab;
     public Transform projectileSpawnpoint;
+    public float projectileForce = 100;
 
     void Awake()
     {
@@ -30,7 +32,8 @@ public class ScalingGun : MonoBehaviour
     {
         GameObject projectileGO = Instantiate(projectilePrefab, projectileSpawnpoint.position, Quaternion.identity);
         Projectile projectile = projectileGO.GetComponent<Projectile>();
-        projectile.direction = projectileSpawnpoint.forward;
+        projectile.direction = Camera.main.transform.forward;
+        projectile.force = projectileForce;
 
         switch(mode)
         {
