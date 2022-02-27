@@ -5386,35 +5386,27 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1384003908818366912, guid: 0809de1df9dd04542a23e77318fd865a, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 480
+      value: 512
       objectReference: {fileID: 0}
     - target: {fileID: 1384003908818366912, guid: 0809de1df9dd04542a23e77318fd865a, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 180
+      value: 128
       objectReference: {fileID: 0}
     - target: {fileID: 1384003908818366912, guid: 0809de1df9dd04542a23e77318fd865a, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1473434563573955998, guid: 0809de1df9dd04542a23e77318fd865a, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1473434563573955998, guid: 0809de1df9dd04542a23e77318fd865a, type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1473434563573955998, guid: 0809de1df9dd04542a23e77318fd865a, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 600
+      value: 512
       objectReference: {fileID: 0}
     - target: {fileID: 1473434563573955998, guid: 0809de1df9dd04542a23e77318fd865a, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 180
+      value: 128
       objectReference: {fileID: 0}
     - target: {fileID: 1473434563573955998, guid: 0809de1df9dd04542a23e77318fd865a, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 122
+      value: 96
       objectReference: {fileID: 0}
     - target: {fileID: 1601326021052250064, guid: 0809de1df9dd04542a23e77318fd865a, type: 3}
       propertyPath: m_UiScaleMode
@@ -5468,10 +5460,6 @@ PrefabInstance:
       propertyPath: m_fontSizeBase
       value: 72
       objectReference: {fileID: 0}
-    - target: {fileID: 4182008120442169876, guid: 0809de1df9dd04542a23e77318fd865a, type: 3}
-      propertyPath: m_enableAutoSizing
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4751446034197306928, guid: 0809de1df9dd04542a23e77318fd865a, type: 3}
       propertyPath: m_fontSize
       value: 72
@@ -5480,21 +5468,17 @@ PrefabInstance:
       propertyPath: m_fontSizeBase
       value: 72
       objectReference: {fileID: 0}
-    - target: {fileID: 4751446034197306928, guid: 0809de1df9dd04542a23e77318fd865a, type: 3}
-      propertyPath: m_enableAutoSizing
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5992059718604321690, guid: 0809de1df9dd04542a23e77318fd865a, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 400
+      value: 512
       objectReference: {fileID: 0}
     - target: {fileID: 5992059718604321690, guid: 0809de1df9dd04542a23e77318fd865a, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 160
+      value: 128
       objectReference: {fileID: 0}
     - target: {fileID: 5992059718604321690, guid: 0809de1df9dd04542a23e77318fd865a, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -132
+      value: -106
       objectReference: {fileID: 0}
     - target: {fileID: 6567407157525341193, guid: 0809de1df9dd04542a23e77318fd865a, type: 3}
       propertyPath: m_fontSize
