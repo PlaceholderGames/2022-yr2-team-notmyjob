@@ -23,7 +23,7 @@ public class GrabItem : MonoBehaviour
     public Rigidbody grabbedItem;
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         //if the player is holding an item
         if (grabbedItem)
