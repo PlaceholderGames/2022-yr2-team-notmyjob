@@ -8,12 +8,6 @@ public class PortalTeleport : MonoBehaviour
 
     private bool isPlayerOverlapping = false;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
     // Update is called once per frame
     void Update()
     {
@@ -21,13 +15,14 @@ public class PortalTeleport : MonoBehaviour
         {
             Vector3 portalToPlayer = GameManager.getPlayer().transform.position - transform.position;
             float dotProduct = Vector3.Dot(transform.up, portalToPlayer);
+            Debug.Log(dotProduct);
 
             // Player has teleported if true
-            if(dotProduct < 0)
+            if(dotProduct < 0f)
             {
                 // Teleport
                 float rotationDifference = Quaternion.Angle(transform.rotation, reciever.rotation);
-                rotationDifference += 180;
+                //rotationDifference += 180;
                 GameManager.getPlayer().transform.Rotate(Vector3.up, rotationDifference);
 
                 Vector3 positionOffset = Quaternion.Euler(0f, rotationDifference, 0f) * portalToPlayer;
@@ -40,11 +35,10 @@ public class PortalTeleport : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        isPlayerOverlapping = other.gameObject == GameManager.getPlayer().gameObject;
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        isPlayerOverlapping = !(other.gameObject == GameManager.getPlayer().gameObject);
+        if(other.tag == GameManager.getPlayer().gameObject.tag)
+        {
+            //isPlayerOverlapping = true;
+            other.transform.position = reciever.transform.position;
+        }
     }
 }
