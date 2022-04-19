@@ -27,15 +27,17 @@ public class GrabItem : MonoBehaviour
     {
         //if the player is holding an item
         if (grabbedItem)
-        {   
+        {
             //this will allow to held item to move with the player camera with a set speed
-            grabbedItem.MovePosition(Vector3.Lerp(grabbedItem.position, holdingPoint.transform.position, Time.deltaTime * movingSpeed));
-
+            //grabbedItem.MovePosition(Vector3.Lerp(grabbedItem.position, holdingPoint.transform.position, Time.deltaTime * movingSpeed));
+            grabbedItem.transform.parent = holdingPoint;
             //if the player press the t key while holding an item ->
             //it will be thrown away with a set force
             if (Input.GetKeyDown(KeyCode.T))
             {
-                grabbedItem.isKinematic = false;
+                //grabbedItem.isKinematic = false;
+                grabbedItem.transform.parent = null;
+                grabbedItem.useGravity = true;
                 grabbedItem.AddForce(cam.transform.forward * throwDist, ForceMode.VelocityChange);
                 grabbedItem = null;
 
@@ -56,7 +58,10 @@ public class GrabItem : MonoBehaviour
         {
             if (grabbedItem)
             {
-                grabbedItem.isKinematic = false;
+                //grabbedItem.isKinematic = false;
+                grabbedItem.transform.parent = null;
+                grabbedItem.transform.position.Set(grabbedItem.transform.position.x, holdingPoint.transform.position.y, grabbedItem.transform.position.z);
+                grabbedItem.useGravity = true;
                 grabbedItem = null;
             }
             else
@@ -70,10 +75,15 @@ public class GrabItem : MonoBehaviour
                     grabbedItem = hit.collider.gameObject.GetComponent<Rigidbody>();
                     if (grabbedItem)    //checks if the grabed item does have a rigidbody
                     {
-                        grabbedItem.isKinematic = true;
+                        grabbedItem.transform.parent = holdingPoint;
+                        grabbedItem.useGravity = false;
+                        //grabbedItem.isKinematic = true;
+                        
+
                     }
                 }
             }
         }
     }
 }
+
