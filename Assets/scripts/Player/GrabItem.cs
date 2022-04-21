@@ -12,7 +12,7 @@ public class GrabItem : MonoBehaviour
     [Tooltip("This value will determen the max distance of the player can throw item")]
     [SerializeField] float throwDist = 10.0f;
     [Tooltip("This value will determen how fast can the item move while the player is holding it")]
-    [SerializeField] float movingSpeed = 10.0f;
+    [SerializeField] float movingSpeed = 100.0f;
     [Tooltip("This will set at what speed the item will rotate ")]
     [SerializeField] float rotatingSpeed = 20.0f;
 
@@ -30,7 +30,9 @@ public class GrabItem : MonoBehaviour
         {
             //this will allow to held item to move with the player camera with a set speed
             //grabbedItem.MovePosition(Vector3.Lerp(grabbedItem.position, holdingPoint.transform.position, Time.deltaTime * movingSpeed));
-            grabbedItem.transform.parent = holdingPoint;
+            //grabbedItem.transform.parent = holdingPoint;
+            grabbedItem.position = holdingPoint.position;
+            grabbedItem.freezeRotation = true;
             //if the player press the t key while holding an item ->
             //it will be thrown away with a set force
             if (Input.GetKeyDown(KeyCode.T))
@@ -38,6 +40,7 @@ public class GrabItem : MonoBehaviour
                 //grabbedItem.isKinematic = false;
                 grabbedItem.transform.parent = null;
                 grabbedItem.useGravity = true;
+                grabbedItem.freezeRotation = false;
                 grabbedItem.AddForce(cam.transform.forward * throwDist, ForceMode.VelocityChange);
                 grabbedItem = null;
 
@@ -62,6 +65,7 @@ public class GrabItem : MonoBehaviour
                 grabbedItem.transform.parent = null;
                 grabbedItem.transform.position.Set(grabbedItem.transform.position.x, holdingPoint.transform.position.y, grabbedItem.transform.position.z);
                 grabbedItem.useGravity = true;
+                grabbedItem.freezeRotation = false;
                 grabbedItem = null;
             }
             else
