@@ -1,93 +1,105 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class GrabItem : MonoBehaviour
 {
-    //this will hold the player came that will give tha position for the item
-    [SerializeField] Camera cam;
+    [SerializeField] private Camera playerCamera;
+    [SerializeField] private Transform pickupPoint;
+    [Space] [SerializeField] private float pickupRange = 20;
 
-    [Tooltip("This value will determen the max distance of the player can grab item")]
-    [SerializeField] float maxGrabingDist = 20.0f;
-    [Tooltip("This value will determen the max distance of the player can throw item")]
-    [SerializeField] float throwDist = 10.0f;
-    [Tooltip("This value will determen how fast can the item move while the player is holding it")]
-    [SerializeField] float movingSpeed = 100.0f;
-    [Tooltip("This will set at what speed the item will rotate ")]
-    [SerializeField] float rotatingSpeed = 20.0f;
+    [Space] [SerializeField] private float movingSpeed = 100.0f;
+    [SerializeField] private float rotatingSpeed = 100.0f;
+    [SerializeField] private float throwDistance = 10.0f;
 
-    //this will be the position where the item is being held infront of the player
-    [Tooltip("This should be an empty gameobject in fornt of the player that will determine the position of the item that is being held")]
-    [SerializeField] Transform holdingPoint;
-    //this will check if the item has a rigidbody
-    public Rigidbody grabbedItem;
+    private Rigidbody currentObject;
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        //if the player is holding an item
-        if (grabbedItem)
-        {
-            //this will allow to held item to move with the player camera with a set speed
-            //grabbedItem.MovePosition(Vector3.Lerp(grabbedItem.position, holdingPoint.transform.position, Time.deltaTime * movingSpeed));
-            //grabbedItem.transform.parent = holdingPoint;
-            grabbedItem.position = holdingPoint.position;
-            grabbedItem.freezeRotation = true;
-            //if the player press the t key while holding an item ->
-            //it will be thrown away with a set force
-            if (Input.GetKeyDown(KeyCode.T))
-            {
-                //grabbedItem.isKinematic = false;
-                grabbedItem.transform.parent = null;
-                grabbedItem.useGravity = true;
-                grabbedItem.freezeRotation = false;
-                grabbedItem.AddForce(cam.transform.forward * throwDist, ForceMode.VelocityChange);
-                grabbedItem = null;
+        playerCamera = Camera.main;
+    }
 
-            }
-
-            if(Input.GetKey(GameManager.objectRotateButton))
-            {
-                float rotatingX = Input.GetAxis("Mouse X") * rotatingSpeed * Mathf.Deg2Rad;
-                float rotatingY = Input.GetAxis("Mouse Y") * rotatingSpeed * Mathf.Deg2Rad;
-
-                grabbedItem.transform.Rotate(Vector3.up, -rotatingX);
-                grabbedItem.transform.Rotate(Vector3.right, rotatingY);
-            }
-
-        }
-        //Check for player pressing middle mouse button 
+    private void Update()
+    {   
+        // Pickup or drop object
         if (Input.GetMouseButtonDown(2))
         {
-            if (grabbedItem)
+            // Check if there's already an object in hand
+            if (currentObject)
             {
-                //grabbedItem.isKinematic = false;
-                grabbedItem.transform.parent = null;
-                grabbedItem.transform.position.Set(grabbedItem.transform.position.x, holdingPoint.transform.position.y, grabbedItem.transform.position.z);
-                grabbedItem.useGravity = true;
-                grabbedItem.freezeRotation = false;
-                grabbedItem = null;
+                // Drop object
+                currentObject.useGravity = true;
+                currentObject = null;
+                return;
             }
-            else
-            {   
-                //creating a ray that will check for items to grab in the ->
-                //direction the player camrea is facing
-                RaycastHit hit;
-                Ray ray = cam.ViewportPointToRay(new Vector3(0.5f, 0.5f));
-                if (Physics.Raycast(ray, out hit, maxGrabingDist))
+            
+            // Send a raycast from center point
+            Ray cameraRay = playerCamera.ViewportPointToRay(Vector3.one * 0.5f);
+            if (Physics.Raycast(cameraRay, out RaycastHit hit, pickupRange))
+            {
+                // Check if raycast hit an object with a rigidbody
+                if (hit.rigidbody)
                 {
-                    grabbedItem = hit.collider.gameObject.GetComponent<Rigidbody>();
-                    if (grabbedItem)    //checks if the grabed item does have a rigidbody
-                    {
-                        grabbedItem.transform.parent = holdingPoint;
-                        grabbedItem.useGravity = false;
-                        //grabbedItem.isKinematic = true;
-                        
-
-                    }
+                    // Set current object to hit object
+                    currentObject = hit.rigidbody;
+                    currentObject.useGravity = false;
+                    currentObject.freezeRotation = false;
                 }
             }
         }
+        
+        // Throw object
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            // Check if object is in hand
+            if (currentObject)
+            {
+                
+                // Throw object using force
+                currentObject.useGravity = true;
+                currentObject.freezeRotation = false;
+                currentObject.AddForce(playerCamera.transform.forward * throwDistance, ForceMode.VelocityChange);
+                currentObject = null;
+            }
+        }
+        
+        // Rotate Object
+        if(Input.GetKey(GameManager.objectRotateButton))
+        {
+            // Check if object is in hand
+            if (currentObject)
+            {
+                // Rotate object
+                currentObject.freezeRotation = true;
+                
+                float rotatingX = Input.GetAxis("Mouse X") * rotatingSpeed * Mathf.Deg2Rad;
+                float rotatingY = Input.GetAxis("Mouse Y") * rotatingSpeed * Mathf.Deg2Rad;
+
+                currentObject.transform.Rotate(Vector3.up, -rotatingX);
+                currentObject.transform.Rotate(Vector3.right, rotatingY);
+            }
+        }
+
+    }
+
+    private void FixedUpdate()
+    {
+        // Check if object is in hand
+        if (currentObject)
+        {
+            // Move object to pickup point
+            Vector3 directionToPoint = pickupPoint.position - currentObject.position;
+            float distanceToPoint = directionToPoint.magnitude;
+
+            currentObject.velocity = directionToPoint * movingSpeed * distanceToPoint;
+        }
+    }
+
+    // Return grabbed object in hand
+    public Rigidbody getGrabbedObject()
+    {
+        return currentObject;
     }
 }
 

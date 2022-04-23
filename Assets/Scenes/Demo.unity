@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.12107873, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -334,6 +334,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 892441280, guid: 0809de1df9dd04542a23e77318fd865a, type: 3}
+      propertyPath: pickupPoint
+      value: 
+      objectReference: {fileID: 819383466}
+    - target: {fileID: 892441280, guid: 0809de1df9dd04542a23e77318fd865a, type: 3}
+      propertyPath: playerCamera
+      value: 
+      objectReference: {fileID: 550515743}
+    - target: {fileID: 892441280, guid: 0809de1df9dd04542a23e77318fd865a, type: 3}
       propertyPath: holdingPoint2
       value: 
       objectReference: {fileID: 819383465}
@@ -387,6 +395,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0809de1df9dd04542a23e77318fd865a, type: 3}
+--- !u!20 &550515743 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 8871230779686704942, guid: 0809de1df9dd04542a23e77318fd865a, type: 3}
+  m_PrefabInstance: {fileID: 349392334}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &555441726
 GameObject:
   m_ObjectHideFlags: 0
@@ -673,6 +686,11 @@ Transform:
 --- !u!1 &819383465 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1170894021, guid: 0809de1df9dd04542a23e77318fd865a, type: 3}
+  m_PrefabInstance: {fileID: 349392334}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &819383466 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1170894022, guid: 0809de1df9dd04542a23e77318fd865a, type: 3}
   m_PrefabInstance: {fileID: 349392334}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &948977525

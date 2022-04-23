@@ -55,7 +55,7 @@ public class Projectile : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         // Check if player is currently holding an object
-        Rigidbody heldItem = GameManager.getPlayer().GetComponent<GrabItem>().grabbedItem;
+        Rigidbody heldItem = GameManager.getPlayer().GetComponent<GrabItem>().getGrabbedObject();
         bool isHolding = heldItem != null;
 
         // Checks if the current held item is the object hit.

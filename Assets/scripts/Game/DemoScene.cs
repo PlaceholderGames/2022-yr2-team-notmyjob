@@ -14,7 +14,7 @@ public class DemoScene : MonoBehaviour
 
     void Update()
     {
-        insertHere.SetActive(GameManager.getPlayer().GetComponent<GrabItem>().grabbedItem != null);
+        insertHere.SetActive(GameManager.getPlayer().GetComponent<GrabItem>().getGrabbedObject() != null);
         if(insertHere.activeSelf) insertHere.transform.LookAt(Camera.main.transform);
     }
 }

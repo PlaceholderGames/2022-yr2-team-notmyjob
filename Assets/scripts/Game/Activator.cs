@@ -24,7 +24,7 @@ public class Activator : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Rigidbody grabbedRigidbody = GameManager.getPlayer().GetComponent<GrabItem>().grabbedItem;
+        Rigidbody grabbedRigidbody = GameManager.getPlayer().GetComponent<GrabItem>().getGrabbedObject();
         GameObject grabbedItem = grabbedRigidbody != null ? grabbedRigidbody.gameObject : null;
 
         if(other != null && other.gameObject.tag == "ScalableObject")
