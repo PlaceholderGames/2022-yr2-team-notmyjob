@@ -209,7 +209,7 @@ public class PlayerController : MonoBehaviour
 
     void HandleCharacterMovement()
     {
-        bool grabbedItem = GetComponent<GrabItem>().grabbedItem != null;
+        bool grabbedItem = GetComponent<GrabItem>().getGrabbedObject() != null;
         bool holdingR = Input.GetKey(GameManager.objectRotateButton);
 
         canMoveHead = (!holdingR && grabbedItem) || (!holdingR && !grabbedItem) || (holdingR && !grabbedItem);
