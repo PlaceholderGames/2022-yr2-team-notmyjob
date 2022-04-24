@@ -4,12 +4,16 @@ using UnityEngine;
 
 public class PortalCamera : MonoBehaviour
 {
-    public Transform playerCamera;
+    private Transform playerCamera;
 
     public Transform portalTarget;
     public Transform currentPortal;
 
-    // Update is called once per frame
+    void Start()
+    {
+        playerCamera = Camera.main.transform;
+    }
+    
     void Update()
     {
         Vector3 playerOffsetFromPortal = playerCamera.position - currentPortal.position;
