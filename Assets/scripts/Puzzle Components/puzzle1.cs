@@ -9,10 +9,16 @@ public class puzzle1 : MonoBehaviour
 
     //prviding the name that each altar will be requesting
     [SerializeField] string PuzzleCode;
-    private void OnTriggerStay(Collider other)
-    {   
-        //if the p[u
-        if (other.gameObject.tag == PuzzleCode)
+
+    private void Start()
+    {
+        anim.GetComponent<Animator>().enabled = false;
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        print("colliding");
+        string fornow = other.GetComponent<PuzzlePiece>().PuzzleCode;
+        if (fornow == this.PuzzleCode)
         {
             anim.GetComponent<Animator>().enabled = true;
             other.transform.rotation = gameObject.transform.rotation;
