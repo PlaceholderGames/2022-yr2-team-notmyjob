@@ -1402,6 +1402,7 @@ GameObject:
   - component: {fileID: 8871230778055546426}
   - component: {fileID: 8871230778055546424}
   - component: {fileID: 892441280}
+  - component: {fileID: 8328363579660107026}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1518,13 +1519,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ab999023654da442972f4dd8b7f64ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 8871230779686704942}
-  maxGrabingDist: 20
-  throwDist: 10
+  playerCamera: {fileID: 0}
+  pickupPoint: {fileID: 0}
+  pickupRange: 20
   movingSpeed: 70
   rotatingSpeed: 20
-  holdingPoint: {fileID: 1170894022}
-  grabbedItem: {fileID: 0}
+  throwDistance: 10
+--- !u!114 &8328363579660107026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8871230778055546427}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70c4897d10f7cb346b502fe765eef8f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectRotateButton: 114
 --- !u!1 &8871230778924410541
 GameObject:
   m_ObjectHideFlags: 0

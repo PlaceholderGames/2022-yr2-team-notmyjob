@@ -1,34 +1,34 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public static class GameManager
+public class GameManager : MonoBehaviour
 {
-    // This class should be used as a data class
-    // and should only include static variables.
 
-
+    private static GameManager _instance;
+    
     /// <summary>
     /// This property allows the game to check whether
     /// the game should be paused or not.
     /// </summary>
-    private static bool _paused = false;
+    private bool _paused = false;
 
 
     /// <summary>
     /// This property allows the game to globally access
     /// the player controller.
     /// </summary>
-    private static PlayerController _player = null;
+    private PlayerController _player = null;
 
-    public static KeyCode objectRotateButton = KeyCode.R;
+    public KeyCode objectRotateButton = KeyCode.R;
 
     /// <summary>
     /// This method allows setting the paused
     /// property to be modified.
     /// </summary>
     /// <param name="value"></param>
-    public static void setPaused(bool value)
+    public void setPaused(bool value)
     {
         _paused = value;
     }
@@ -38,7 +38,7 @@ public static class GameManager
     /// property.
     /// </summary>
     /// <returns></returns>
-    public static bool isPaused()
+    public bool isPaused()
     {
         return _paused;
     }
@@ -49,7 +49,7 @@ public static class GameManager
     /// To access the GameObject, use: <c>GameManager.getPlayer().gameObject</c>
     /// </summary>
     /// <returns></returns>
-    public static PlayerController getPlayer()
+    public PlayerController getPlayer()
     {
         return _player;
     }
@@ -59,8 +59,37 @@ public static class GameManager
     /// Set the player GameObject
     /// </summary>
     /// <param name="player"></param>
-    public static void setPlayer(PlayerController player)
+    public void setPlayer(PlayerController player)
     {
         _player = player;
+    }
+
+    public static GameManager getInstance()
+    {
+        return _instance;
+    }
+
+    public void Awake()
+    {
+        if (_instance == null)
+        {
+            _instance = this;
+        }
+        
+        OnInstanceInitialized();
+    }
+
+    private void OnInstanceInitialized()
+    {
+        // Add ScalableObject component onto GameObjects with ScalableObject tag
+        GameObject[] scalableObjects = GameObject.FindGameObjectsWithTag("ScalableObject");
+        foreach (GameObject scalableObject in scalableObjects)
+        {
+            // Add ScalableObject component if it doesn't exist
+            if (scalableObject.GetComponent<ScalableObject>() == null)
+            {
+                scalableObject.AddComponent<ScalableObject>();
+            }
+        }
     }
 }

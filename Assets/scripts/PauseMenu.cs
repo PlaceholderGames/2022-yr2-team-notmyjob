@@ -12,7 +12,7 @@ public class PauseMenu : MonoBehaviour
     {
         // Start by setting the PauseMenu UI visiblity
         // to whether the game is paused
-        PauseMenuUI.SetActive(GameManager.isPaused());
+        PauseMenuUI.SetActive(GameManager.getInstance().isPaused());
     }
 
     // Update is called once per frame
@@ -22,21 +22,21 @@ public class PauseMenu : MonoBehaviour
         {
             // Toggle whether game is paused
             // e.g If game is paused (true), set it to not true (false)
-            GameManager.setPaused(!GameManager.isPaused());
+            GameManager.getInstance().setPaused(!GameManager.getInstance().isPaused());
         }
 
         // Only show pause menu if game is paused
-        PauseMenuUI.SetActive(GameManager.isPaused());
+        PauseMenuUI.SetActive(GameManager.getInstance().isPaused());
 
         // Convert boolean into int (Will turn false into 1, and true into 0)
         // Setting the timescale to the converted integer.
-        Time.timeScale = Convert.ToInt32(!GameManager.isPaused());
+        Time.timeScale = Convert.ToInt32(!GameManager.getInstance().isPaused());
 
     }
 
     public void Resume()
     {
-        GameManager.setPaused(false);
+        GameManager.getInstance().setPaused(false);
     }
 
     public void MainMenu() 

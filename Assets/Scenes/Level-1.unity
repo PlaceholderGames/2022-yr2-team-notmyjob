@@ -8334,6 +8334,26 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 921884724}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &924494151 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5021649686754481123, guid: 8c28b1133457969498794a7f42e71c2b, type: 3}
+  m_PrefabInstance: {fileID: 5021649687552640088}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &924494152
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 924494151}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ff6814b03941d726ab49bd95509db05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isScalable: 1
+  overrideLimits: 0
+  overrideScaleAxis: 1
 --- !u!1 &925764846
 GameObject:
   m_ObjectHideFlags: 0
@@ -11940,7 +11960,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dad1a84b7e294419a1d188e01c4746, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Level 1
+  levelName: 
   portalCameraSource: {fileID: 1988709487}
   portalCameraDestination: {fileID: 605866910}
   matSource: {fileID: 2100000, guid: 08c55ba026483a7478e987be5b916404, type: 2}
@@ -11971,7 +11991,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dad1a84b7e294419a1d188e01c4746, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Level 2
+  levelName: 
   portalCameraSource: {fileID: 1076252112}
   portalCameraDestination: {fileID: 37604639}
   matSource: {fileID: 2100000, guid: ba530c449aa3479919df7081547f5fd3, type: 2}
@@ -11988,7 +12008,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dad1a84b7e294419a1d188e01c4746, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Level 4
+  levelName: 
   portalCameraSource: {fileID: 1362233567}
   portalCameraDestination: {fileID: 173705685}
   matSource: {fileID: 2100000, guid: 436fbd3e0c7aea786b33060b031eba57, type: 2}
@@ -12005,7 +12025,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dad1a84b7e294419a1d188e01c4746, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Level 3
+  levelName: 
   portalCameraSource: {fileID: 1895312526}
   portalCameraDestination: {fileID: 1646908140}
   matSource: {fileID: 2100000, guid: 1aa3c39f14c5233eca5e0c6598b39422, type: 2}
@@ -14272,6 +14292,19 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8871230778055546427, guid: 0809de1df9dd04542a23e77318fd865a, type: 3}
   m_PrefabInstance: {fileID: 292380242}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1884615333
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1884615329}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70c4897d10f7cb346b502fe765eef8f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectRotateButton: 114
 --- !u!1 &1891052596
 GameObject:
   m_ObjectHideFlags: 0

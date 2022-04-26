@@ -135,12 +135,12 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        GameManager.setPlayer(this);
+        GameManager.getInstance().setPlayer(this);
 
         controller = GetComponent<CharacterController>();
         playerInput = GetComponent<PlayerInput>();
-        Cursor.lockState = GameManager.isPaused() ? CursorLockMode.None : CursorLockMode.Locked;
-        Cursor.visible = GameManager.isPaused();
+        Cursor.lockState = GameManager.getInstance().isPaused() ? CursorLockMode.None : CursorLockMode.Locked;
+        Cursor.visible = GameManager.getInstance().isPaused();
 
         controller.enableOverlapRecovery = true;
 
@@ -163,8 +163,8 @@ public class PlayerController : MonoBehaviour
 
         // Handle fall damage
 
-        Cursor.lockState = GameManager.isPaused() ? CursorLockMode.None : CursorLockMode.Locked;
-        Cursor.visible = GameManager.isPaused();
+        Cursor.lockState = GameManager.getInstance().isPaused() ? CursorLockMode.None : CursorLockMode.Locked;
+        Cursor.visible = GameManager.getInstance().isPaused();
 
         UpdateCharacterHeight(true);
         HandleCharacterMovement();
@@ -210,7 +210,7 @@ public class PlayerController : MonoBehaviour
     void HandleCharacterMovement()
     {
         bool grabbedItem = GetComponent<GrabItem>().getGrabbedObject() != null;
-        bool holdingR = Input.GetKey(GameManager.objectRotateButton);
+        bool holdingR = Input.GetKey(GameManager.getInstance().objectRotateButton);
 
         canMoveHead = (!holdingR && grabbedItem) || (!holdingR && !grabbedItem) || (holdingR && !grabbedItem);
 

@@ -65,7 +65,7 @@ public class GrabItem : MonoBehaviour
         }
         
         // Rotate Object
-        if(Input.GetKey(GameManager.objectRotateButton))
+        if(Input.GetKey(GameManager.getInstance().objectRotateButton))
         {
             // Check if object is in hand
             if (currentObject)
