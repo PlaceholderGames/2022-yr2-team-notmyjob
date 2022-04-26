@@ -92,14 +92,16 @@ public class GrabItem : MonoBehaviour
             Vector3 directionToPoint = pickupPoint.position - currentObject.position;
             float distanceToPoint = directionToPoint.magnitude;
 
-            currentObject.velocity = directionToPoint * movingSpeed * distanceToPoint;
-            
             // If object is too far away, set the position to pickup point
             if (distanceToPoint > pickupRange)
             {
                 currentObject.position = pickupPoint.position;
                 currentObject.velocity = Vector3.zero;
                 currentObject.angularVelocity = Vector3.zero;
+            } else
+            {
+                // Otherwise, move the object towards pickup point
+                currentObject.velocity = directionToPoint * movingSpeed * distanceToPoint;
             }
         }
     }

@@ -2809,11 +2809,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0809de1df9dd04542a23e77318fd865a, type: 3}
---- !u!4 &292380243 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8871230778055546425, guid: 0809de1df9dd04542a23e77318fd865a, type: 3}
-  m_PrefabInstance: {fileID: 292380242}
-  m_PrefabAsset: {fileID: 0}
 --- !u!143 &292380244 stripped
 CharacterController:
   m_CorrespondingSourceObject: {fileID: 8871230778055546424, guid: 0809de1df9dd04542a23e77318fd865a, type: 3}
@@ -7365,9 +7360,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee6b8f891fdd3d14685fd6245551d25c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: {fileID: 292380244}
-  Player_pos: {fileID: 292380243}
-  SpawnPoint: {fileID: 795690367}
+  spawnPoint: {fileID: 795690367}
 --- !u!65 &793488356
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13192,9 +13185,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee6b8f891fdd3d14685fd6245551d25c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: {fileID: 292380244}
-  Player_pos: {fileID: 292380243}
-  SpawnPoint: {fileID: 1723975246}
+  spawnPoint: {fileID: 1723975246}
 --- !u!65 &1687275561
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13414,9 +13405,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee6b8f891fdd3d14685fd6245551d25c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: {fileID: 292380244}
-  Player_pos: {fileID: 292380243}
-  SpawnPoint: {fileID: 990567752}
+  spawnPoint: {fileID: 990567752}
 --- !u!65 &1727307333
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -16934,9 +16923,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee6b8f891fdd3d14685fd6245551d25c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: {fileID: 292380244}
-  Player_pos: {fileID: 292380243}
-  SpawnPoint: {fileID: 990567752}
+  spawnPoint: {fileID: 0}
 --- !u!65 &2123609422
 BoxCollider:
   m_ObjectHideFlags: 0
