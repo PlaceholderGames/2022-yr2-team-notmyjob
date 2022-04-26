@@ -35,7 +35,10 @@ public class PortalTeleport : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag == GameManager.getPlayer().gameObject.tag)
+        Transform otherTransform = other.transform;
+        bool canTeleport = otherTransform.CompareTag("Player") || otherTransform.CompareTag("ScalableObject");
+
+        if(canTeleport)
         {
             //isPlayerOverlapping = true;
             other.transform.position = reciever.transform.position;
