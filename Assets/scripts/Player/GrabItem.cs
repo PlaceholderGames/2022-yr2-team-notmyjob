@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class GrabItem : MonoBehaviour
 {
-    [SerializeField] private Camera playerCamera;
+    private Camera playerCamera;
     [SerializeField] private Transform pickupPoint;
     [Space] [SerializeField] private float pickupRange = 20;
 
@@ -93,6 +93,14 @@ public class GrabItem : MonoBehaviour
             float distanceToPoint = directionToPoint.magnitude;
 
             currentObject.velocity = directionToPoint * movingSpeed * distanceToPoint;
+            
+            // If object is too far away, set the position to pickup point
+            if (distanceToPoint > pickupRange)
+            {
+                currentObject.position = pickupPoint.position;
+                currentObject.velocity = Vector3.zero;
+                currentObject.angularVelocity = Vector3.zero;
+            }
         }
     }
 
