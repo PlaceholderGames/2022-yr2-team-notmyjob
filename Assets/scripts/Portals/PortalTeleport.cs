@@ -13,7 +13,7 @@ public class PortalTeleport : MonoBehaviour
     {
         if(isPlayerOverlapping)
         {
-            Vector3 portalToPlayer = GameManager.getPlayer().transform.position - transform.position;
+            Vector3 portalToPlayer = GameManager.getInstance().getPlayer().transform.position - transform.position;
             float dotProduct = Vector3.Dot(transform.up, portalToPlayer);
             Debug.Log(dotProduct);
 
@@ -23,10 +23,10 @@ public class PortalTeleport : MonoBehaviour
                 // Teleport
                 float rotationDifference = Quaternion.Angle(transform.rotation, reciever.rotation);
                 //rotationDifference += 180;
-                GameManager.getPlayer().transform.Rotate(Vector3.up, rotationDifference);
+                GameManager.getInstance().getPlayer().transform.Rotate(Vector3.up, rotationDifference);
 
                 Vector3 positionOffset = Quaternion.Euler(0f, rotationDifference, 0f) * portalToPlayer;
-                GameManager.getPlayer().transform.position = reciever.position + positionOffset;
+                GameManager.getInstance().getPlayer().transform.position = reciever.position + positionOffset;
 
                 isPlayerOverlapping = false;
             }
@@ -35,7 +35,7 @@ public class PortalTeleport : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag == GameManager.getPlayer().gameObject.tag)
+        if(other.tag == GameManager.getInstance().getPlayer().gameObject.tag)
         {
             //isPlayerOverlapping = true;
             other.transform.position = reciever.transform.position;

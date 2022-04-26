@@ -5,10 +5,10 @@ using UnityEngine;
 
 public class PortalSetup : MonoBehaviour
 {
-    [SerializeField] private String name;
+    [SerializeField] private String levelName;
     
-    public new Camera portalCameraSource;
-    public new Camera portalCameraDestination;
+    public Camera portalCameraSource;
+    public Camera portalCameraDestination;
     
     public Material matSource;
     public Material matDestination;

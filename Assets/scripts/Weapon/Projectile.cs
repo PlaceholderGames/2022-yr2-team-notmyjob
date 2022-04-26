@@ -8,8 +8,8 @@ public class Projectile : MonoBehaviour
     // Time at which the projectile spawned
     float spawnTime = 0;
 
-    public float maxScale = 2.0f;
-    public float minScale = 0.25f;
+    // public float maxScale = 2.0f;
+    // public float minScale = 0.25f;
 
     public float massChange = 0.1f;
 
@@ -55,7 +55,7 @@ public class Projectile : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         // Check if player is currently holding an object
-        Rigidbody heldItem = GameManager.getPlayer().GetComponent<GrabItem>().getGrabbedObject();
+        Rigidbody heldItem = GameManager.getInstance().getPlayer().GetComponent<GrabItem>().getGrabbedObject();
         bool isHolding = heldItem != null;
 
         // Checks if the current held item is the object hit.
@@ -67,23 +67,30 @@ public class Projectile : MonoBehaviour
 
         // Check if the projectile has intersected
         // a scalable object
-        if (other.transform.tag == "ScalableObject")
+        if (CompareTag("ScalableObject") || other.transform.GetComponent<ScalableObject>())
         {
+            ScalableObject scalableObj = other.transform.GetComponent<ScalableObject>();
+            if (!scalableObj.canScale()) return;
+
             // Change the scale of the object by how much
             // the object should change in size
-            other.transform.localScale += scaleChange;
+            Vector3 scaledChange = new Vector3(scaleChange.x * scalableObj.getScaledAxis().x,
+                scaleChange.y * scalableObj.getScaledAxis().y, scaleChange.z * scalableObj.getScaledAxis().z);
+            other.transform.localScale += scaledChange;
 
             // Change the mass of the object by how much
             // the object should change in mass
             other.GetComponent<Rigidbody>().mass += massChange;
-
-            // Check for scale limits on object
-            if(other.transform.localScale.x <= minScale) other.transform.localScale = Vector3.one * minScale;
-            else if (other.transform.localScale.x >= maxScale) other.transform.localScale = Vector3.one;
             
-            // Destroy object when done.
-            Destroy(gameObject);
+            // Clamp the scale of the object to the max and min
+            other.transform.localScale = new Vector3(
+                Mathf.Clamp(other.transform.localScale.x, scalableObj.getMinimumScale(), scalableObj.getMaximumScale()),
+                Mathf.Clamp(other.transform.localScale.y, scalableObj.getMinimumScale(), scalableObj.getMaximumScale()),
+                Mathf.Clamp(other.transform.localScale.z, scalableObj.getMinimumScale(), scalableObj.getMaximumScale()));
         }
+
+        // Destroy gameObject when done.
+        Destroy(gameObject);
     }
 }
 
