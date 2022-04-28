@@ -20,7 +20,7 @@ public class move_to_lastPuzzle : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (true)
+        if (hasTriggered)
         {
             gameObject.transform.parent = null;
             Destroy(gameObject);
@@ -28,6 +28,7 @@ public class move_to_lastPuzzle : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
+        print(other);
         if (other.tag == "Player")
         {
             Player_pos.position = SP_lastPuzzle.position;
