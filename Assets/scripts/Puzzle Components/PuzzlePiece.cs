@@ -7,7 +7,7 @@ public class PuzzlePiece : MonoBehaviour
     // Start is called before the first frame update
     public string PuzzleCode;
 
-    [SerializeField] GameObject spawnpoint;
+    [SerializeField] Transform spawnpoint;
 
     [SerializeField] GameObject altar;
     void Start()
@@ -22,9 +22,13 @@ public class PuzzlePiece : MonoBehaviour
 
         if (distance >= 200)
         {
-            //Destroy(gameObject);
-            gameObject.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
-            transform.position = spawnpoint.transform.position;
+            Transform temp = transform.parent;
+            Destroy(gameObject);
+            GameObject newObject = Instantiate(this.gameObject, spawnpoint.position, Quaternion.identity);
+            newObject.transform.parent = temp;
+            newObject.GetComponent<Rigidbody>().useGravity = true;
+            //gameObject.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
+            //transform.position = spawnpoint.transform.position;
         }
     }
 
