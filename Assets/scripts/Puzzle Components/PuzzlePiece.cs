@@ -6,13 +6,13 @@ public class PuzzlePiece : MonoBehaviour
 {
     // Start is called before the first frame update
     public string PuzzleCode;
-
+    [SerializeField] AudioSource Src;
+    [SerializeField] AudioClip coll_sound;
     [SerializeField] Transform spawnpoint;
-
     [SerializeField] GameObject altar;
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -30,6 +30,12 @@ public class PuzzlePiece : MonoBehaviour
             //gameObject.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
             //transform.position = spawnpoint.transform.position;
         }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        Src.clip = coll_sound;
+        Src.Play();
     }
 
 }
