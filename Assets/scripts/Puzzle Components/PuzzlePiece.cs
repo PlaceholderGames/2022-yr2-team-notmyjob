@@ -6,8 +6,6 @@ public class PuzzlePiece : MonoBehaviour
 {
     // Start is called before the first frame update
     public string PuzzleCode;
-    [SerializeField] AudioSource Src;
-    [SerializeField] AudioClip coll_sound;
     [SerializeField] Transform spawnpoint;
     [SerializeField] GameObject altar;
     void Start()
@@ -34,8 +32,7 @@ public class PuzzlePiece : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        Src.clip = coll_sound;
-        Src.Play();
+        gameObject.GetComponent<AudioSource>().Play();
     }
 
 }

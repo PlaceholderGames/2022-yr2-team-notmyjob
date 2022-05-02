@@ -12,7 +12,7 @@ public class puzzle2 : MonoBehaviour
     //check for player using the right puzzle piece
     [SerializeField] string PuzzleCode;
 
-
+    bool HasBennPlayed;
     //private boolin to determine if the object has been spwaned before
     private bool hasSpawned;
 
@@ -20,6 +20,7 @@ public class puzzle2 : MonoBehaviour
     {
         hasSpawned = false;
         teleporterBox.SetActive(false);
+        HasBennPlayed = false;
     }
 
     private void OnTriggerStay(Collider other)
@@ -30,6 +31,11 @@ public class puzzle2 : MonoBehaviour
             teleporterBox.SetActive(true);
             Instantiate(myPrefab, spawnPoint_forp.transform.position, Quaternion.identity);
             hasSpawned = true;
+            if (HasBennPlayed == false)
+            {
+                gameObject.GetComponent<AudioSource>().Play();
+                HasBennPlayed = true;
+            }
         }
     }
 }
