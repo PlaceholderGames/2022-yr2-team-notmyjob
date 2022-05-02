@@ -10,9 +10,12 @@ public class puzzle1 : MonoBehaviour
     //prviding the name that each altar will be requesting
     [SerializeField] string PuzzleCode;
 
+    bool hasBenPlayed;
+
     private void Start()
     {
         anim.GetComponent<Animator>().enabled = false;
+        hasBenPlayed = false;
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -28,5 +31,10 @@ public class puzzle1 : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         anim.GetComponent<Animator>().enabled = false;
+        if (hasBenPlayed == false)
+        {
+            gameObject.GetComponent<AudioSource>().Play();
+            hasBenPlayed = true;
+        }
     }
 }
