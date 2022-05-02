@@ -277,7 +277,7 @@ public class PlayerController : MonoBehaviour
                         CharacterVelocity += Vector3.up * jumpForce;
 
                         // play sound
-                        //AudioSource.PlayOneShot(jumpSfx);
+                        audioSource.PlayOneShot(jumpSfx);
 
                         // remember last time we jumped because we need to prevent snapping to ground for a short time
                         lastTimeJumped = Time.time;
@@ -295,7 +295,7 @@ public class PlayerController : MonoBehaviour
                 if (footstepDistanceCounter >= 1f / chosenFootstepSfxFrequency)
                 {
                     footstepDistanceCounter = 0f;
-                    //AudioSource.PlayOneShot(footstepSfx);
+                    audioSource.PlayOneShot(footstepSfx);
                 }
 
                 // keep track of distance traveled for footsteps sound
