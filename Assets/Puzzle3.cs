@@ -7,20 +7,27 @@ public class Puzzle3 : MonoBehaviour
     // storing the position of where the basketball will be respawned
     [SerializeField] Transform SpawnPoint;
     [SerializeField] GameObject basketball;
+    [SerializeField] GameObject Door;
+
     //teh counter will indicate how many baskets did the player throw sucseffuly
     [SerializeField] private int counter;
     [SerializeField] string PuzzleCode;
 
+    [SerializeField] bool Opened;
 
     void Start()
     {
         counter = 0;
+        Opened = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKey(KeyCode.K))
+        {
+            Door.transform.rotation = Quaternion.Euler(0, 90, 0);
+        }
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -29,6 +36,12 @@ public class Puzzle3 : MonoBehaviour
         {
             counter++;
             basketball.transform.position = SpawnPoint.position;
+            if (Opened == false && counter == 5)
+            {
+                Door.transform.rotation = Quaternion.Euler(0, 90, 0);
+                Opened = true;
+            }
+
         }
     }
 }
