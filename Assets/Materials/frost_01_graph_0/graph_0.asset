@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AssetPath: Assets/Materials/frost_01.sbsar
   OutputPath: Assets/Materials/frost_01_graph_0
-  RawData: {fileID: 0}
+  RawData: {fileID: -244192453324840774, guid: f2fb75d99369c1447a0a69a2ff49977e, type: 3}
   Graph:
     Index: 0
     Owner: {fileID: 11400000}
@@ -31,7 +31,7 @@ MonoBehaviour:
         Index: 0
         Type: 8
         Channel: baseColor
-      OutputTexture: {fileID: 0}
+      OutputTexture: {fileID: 2800000, guid: 10af8a3526d56984db0acf2df52d1d74, type: 3}
       sRGB: 1
       IsVirtual: 0
       IsStandardOutput: 1
@@ -49,7 +49,7 @@ MonoBehaviour:
         Index: 1
         Type: 8
         Channel: normal
-      OutputTexture: {fileID: 0}
+      OutputTexture: {fileID: 2800000, guid: 59b230adfb1b2d942a165b87b252b4bb, type: 3}
       sRGB: 0
       IsVirtual: 0
       IsStandardOutput: 1
@@ -85,7 +85,7 @@ MonoBehaviour:
         Index: 3
         Type: 8
         Channel: metallic
-      OutputTexture: {fileID: 0}
+      OutputTexture: {fileID: 2800000, guid: 9ad7ae8d4760f9b478c87f03b3240239, type: 3}
       sRGB: 0
       IsVirtual: 0
       IsStandardOutput: 1
@@ -103,7 +103,7 @@ MonoBehaviour:
         Index: 4
         Type: 8
         Channel: ambientOcclusion
-      OutputTexture: {fileID: 0}
+      OutputTexture: {fileID: 2800000, guid: 98068cb2c8e1f8d46a43f8e82f299ccf, type: 3}
       sRGB: 0
       IsVirtual: 0
       IsStandardOutput: 1
@@ -121,7 +121,7 @@ MonoBehaviour:
         Index: 5
         Type: 8
         Channel: height
-      OutputTexture: {fileID: 0}
+      OutputTexture: {fileID: 2800000, guid: 0a4bc7334e0651f4caa1da029e37f97a, type: 3}
       sRGB: 0
       IsVirtual: 0
       IsStandardOutput: 1
@@ -368,8 +368,8 @@ MonoBehaviour:
     OutputRemaped: 0
     Thumbnail: 
     HasThumbnail: 0
-    OutputMaterial: {fileID: 0}
-    MaterialShader: 
+    OutputMaterial: {fileID: 2100000, guid: 71a28727811da58439de8ba617a829bb, type: 2}
+    MaterialShader: Standard
     GenerateAllOutputs: 0
     GenerateAllMipmaps: 0
     DefaultPreset: " <sbspreset pkgurl=\"pkg://FROST_01\" label=\"\" >\n  <presetinput
