@@ -6,7 +6,8 @@ public class ScalingGun : MonoBehaviour
 {
     PlayerController player;
 
-
+    [SerializeField] AudioSource src;
+    [SerializeField] AudioClip _enlarge, _shrink;
     public GameObject projectilePrefab;
     public Transform projectileSpawnpoint;
     public float projectileForce = 100;
@@ -14,16 +15,22 @@ public class ScalingGun : MonoBehaviour
     void Awake()
     {
         player = FindObjectOfType<PlayerController>();
+        AudioSource src = gameObject.GetComponent<AudioSource>();
     }
 
     void Update()
     {
         if(player.getPlayerInput().handleButtonInput("Fire1", InputMode.PRESS))
         {
+            src.clip = _enlarge;
+            src.PlayOneShot(_enlarge);
             createProjectile(ScaleType.INCREASE);
+            
         }
         else if(player.getPlayerInput().handleButtonInput("Fire2", InputMode.PRESS))
         {
+            src.clip = _shrink;
+            src.PlayOneShot(_shrink);
             createProjectile(ScaleType.DECREASE);
         }
     }
