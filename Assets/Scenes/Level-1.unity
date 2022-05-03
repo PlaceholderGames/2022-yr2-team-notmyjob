@@ -3196,6 +3196,22 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 892441280, guid: 0809de1df9dd04542a23e77318fd865a, type: 3}
+      propertyPath: src
+      value: 
+      objectReference: {fileID: 1003362915}
+    - target: {fileID: 892441280, guid: 0809de1df9dd04542a23e77318fd865a, type: 3}
+      propertyPath: _throw
+      value: 
+      objectReference: {fileID: 8300000, guid: b73c553ab18c8ce45bec0b7f137b7fb9, type: 3}
+    - target: {fileID: 892441280, guid: 0809de1df9dd04542a23e77318fd865a, type: 3}
+      propertyPath: _pickup
+      value: 
+      objectReference: {fileID: 8300000, guid: 928b210a757d5b34c8849dc2505c96a2, type: 3}
+    - target: {fileID: 892441280, guid: 0809de1df9dd04542a23e77318fd865a, type: 3}
+      propertyPath: _putdown
+      value: 
+      objectReference: {fileID: 8300000, guid: 1a2cdc9818805c2429e18d9ba142938f, type: 3}
+    - target: {fileID: 892441280, guid: 0809de1df9dd04542a23e77318fd865a, type: 3}
       propertyPath: pickupPoint
       value: 
       objectReference: {fileID: 1404626345}
@@ -3254,7 +3270,7 @@ PrefabInstance:
     - target: {fileID: 8871230778055546426, guid: 0809de1df9dd04542a23e77318fd865a, type: 3}
       propertyPath: footstepSfx
       value: 
-      objectReference: {fileID: 8300000, guid: e99b65a6f51b96f428ad0f88b6473e68, type: 3}
+      objectReference: {fileID: 8300000, guid: 3230f6d7fc7d1f1aebef325fcd33a8ae, type: 3}
     - target: {fileID: 8871230778055546426, guid: 0809de1df9dd04542a23e77318fd865a, type: 3}
       propertyPath: footstepSfxFrequencyWhileSprinting
       value: 1

@@ -12,12 +12,16 @@ public class GrabItem : MonoBehaviour
     [Space] [SerializeField] private float movingSpeed = 100.0f;
     [SerializeField] private float rotatingSpeed = 100.0f;
     [SerializeField] private float throwDistance = 10.0f;
+    //Aucio clips and the sounds sopurce for the player
+    [SerializeField] AudioClip _pickup, _putdown, _throw;
+    [SerializeField] AudioSource src;
 
     private Rigidbody currentObject;
 
     private void Start()
     {
         playerCamera = Camera.main;
+        AudioSource src = gameObject.GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -30,6 +34,8 @@ public class GrabItem : MonoBehaviour
             {
                 // Drop object
                 currentObject.useGravity = true;
+                src.clip = _putdown;
+                src.PlayOneShot(_putdown);
                 currentObject = null;
                 return;
             }
@@ -45,6 +51,8 @@ public class GrabItem : MonoBehaviour
                     currentObject = hit.rigidbody;
                     currentObject.useGravity = false;
                     currentObject.freezeRotation = false;
+                    src.clip = _pickup;
+                    src.PlayOneShot(_pickup);
                 }
             }
         }
@@ -59,6 +67,8 @@ public class GrabItem : MonoBehaviour
                 // Throw object using force
                 currentObject.useGravity = true;
                 currentObject.freezeRotation = false;
+                src.clip = _throw;
+                src.PlayOneShot(_throw);
                 currentObject.AddForce(playerCamera.transform.forward * throwDistance, ForceMode.VelocityChange);
                 currentObject = null;
             }
