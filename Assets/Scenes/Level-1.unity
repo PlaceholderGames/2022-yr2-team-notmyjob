@@ -1371,6 +1371,7 @@ Transform:
   - {fileID: 980366559}
   - {fileID: 1228515258}
   - {fileID: 947426204}
+  - {fileID: 620994635}
   m_Father: {fileID: 2056252478}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7458,6 +7459,36 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 3, y: 0, z: 2}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &620994634
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 620994635}
+  m_Layer: 0
+  m_Name: displaypos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &620994635
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 620994634}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 161.13, y: 88.563, z: 277.727}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 99391794}
+  m_RootOrder: 22
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &661936693
 GameObject:
   m_ObjectHideFlags: 0
@@ -12575,19 +12606,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1151388028547126963, guid: bf251987483e21743901560092c9761a, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1.1629
+      value: 1.0255
       objectReference: {fileID: 0}
     - target: {fileID: 1151388028547126963, guid: bf251987483e21743901560092c9761a, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.9308
+      value: 0.8573
+      objectReference: {fileID: 0}
+    - target: {fileID: 1151388028547126963, guid: bf251987483e21743901560092c9761a, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1151388028547126963, guid: bf251987483e21743901560092c9761a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.2375
+      value: 0.2747
       objectReference: {fileID: 0}
     - target: {fileID: 1151388028547126963, guid: bf251987483e21743901560092c9761a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.0009
+      value: -0.0028
       objectReference: {fileID: 0}
     - target: {fileID: 1151388028547126963, guid: bf251987483e21743901560092c9761a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -12625,6 +12660,8 @@ MonoBehaviour:
   SpawnPoint: {fileID: 1621578236}
   basketball: {fileID: 764272208604239511}
   Door: {fileID: 218446646}
+  floatingTextPrefab: {fileID: 2564935476665999076, guid: c67fe56f89785a44eb1c8b82ee6b76a6, type: 3}
+  displaypos: {fileID: 620994635}
   counter: 0
   PuzzleCode: BasketBall
   Opened: 0
@@ -12641,6 +12678,20 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.4877992, y: 0.8762165, z: 1.0764772}
   m_Center: {x: 0.050438985, y: 6.5792627, z: -0.29690555}
+--- !u!64 &1228515265
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1228515259}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -2432090755550338912, guid: bf251987483e21743901560092c9761a, type: 3}
 --- !u!1 &1232213015
 GameObject:
   m_ObjectHideFlags: 0
@@ -17615,7 +17666,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PuzzlePiece: {fileID: 1970159081}
-  myPrefab: {fileID: 2550105119476961905, guid: 5b07ee9ede01fef41b8bad3e4c5f4860, type: 3}
+  myPrefab: {fileID: 7387597763282564000, guid: 5b07ee9ede01fef41b8bad3e4c5f4860, type: 3}
   spawnPoint_forp: {fileID: 971143956}
   teleporterBox: {fileID: 971143955}
   PuzzleCode: Puzzle2
@@ -20599,8 +20650,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2134153311}
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 150.7366, y: 85.639626, z: 283.29163}
-  m_LocalScale: {x: 0.4311484, y: 10, z: 78.571625}
+  m_LocalPosition: {x: 150.7366, y: 85.63962, z: 283.29163}
+  m_LocalScale: {x: 0.43114847, y: 10, z: 78.571625}
   m_Children: []
   m_Father: {fileID: 99391794}
   m_RootOrder: 5
