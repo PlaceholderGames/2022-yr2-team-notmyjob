@@ -2,12 +2,16 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GrabItem : MonoBehaviour
 {
     private Camera playerCamera;
     [SerializeField] private Transform pickupPoint;
-    [Space] [SerializeField] private float pickupRange = 20;
+    [SerializeField] private float pickupRange = 20;
+    [SerializeField] private GameObject pickupUI;
+    [SerializeField] private GameObject throwUI;
+    [SerializeField] private GameObject rotateUI;
 
     [Space] [SerializeField] private float movingSpeed = 100.0f;
     [SerializeField] private float rotatingSpeed = 100.0f;
@@ -18,16 +22,57 @@ public class GrabItem : MonoBehaviour
 
     private Rigidbody currentObject;
 
+    private string getSpritePath(string name)
+    {
+        return $"ControllerPrompts/KeyboardMouse/{name.Split('_')[name.Split('_').Length - 1]}/{name}";
+    }
+    
     private void Start()
     {
         playerCamera = Camera.main;
         AudioSource src = gameObject.GetComponent<AudioSource>();
+        
+        string pickupImage = GameManager.GetControllerName(GameManager.GetKeyCodesFromAxis("Hold")[0]);
+        pickupUI.transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(getSpritePath(pickupImage));
+        
+        string throwImage = GameManager.GetControllerName(GameManager.GetKeyCodesFromAxis("Throw")[0]);
+        throwUI.transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(getSpritePath(throwImage));
+
+        string rotateImage = GameManager.GetControllerName(GameManager.GetKeyCodesFromAxis("Rotate")[0]);
+        rotateUI.transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(getSpritePath(rotateImage));
+            
+        pickupUI.SetActive(false);
+        throwUI.SetActive(false);
+        rotateUI.SetActive(false);
     }
 
     private void Update()
-    {   
+    {
+        Ray cameraRay = playerCamera.ViewportPointToRay(Vector3.one * 0.5f);
+        
+        // If the player is not holding an object, show the pickup UI
+        // If the player is holding an object, show the throw UI and show the pickup UI but change the text to "Drop"
+        
+        // Player is not holding an object
+        if (currentObject == null)
+        {
+            bool canPickup = Physics.Raycast(cameraRay, out RaycastHit hitInfo, pickupRange);
+            pickupUI.GetComponentInChildren<TMPro.TMP_Text>().text = "Pickup";
+            pickupUI.SetActive(canPickup && hitInfo.rigidbody != null);
+            throwUI.SetActive(false);
+            rotateUI.SetActive(false);
+        }
+        else
+        {
+            pickupUI.transform.position = new Vector3 (Screen.width * 0.5f, Screen.height * 0.5f, 0);
+            pickupUI.SetActive(true);
+            throwUI.SetActive(true);
+            rotateUI.SetActive(true);
+            pickupUI.GetComponentInChildren<TMPro.TMP_Text>().text = "Drop";
+        }
+
         // Pickup or drop object
-        if (Input.GetMouseButtonDown(2))
+        if (Input.GetKeyDown(GameManager.GetKeyCodesFromAxis("Hold")[0]))
         {
             // Check if there's already an object in hand
             if (currentObject)
@@ -41,7 +86,6 @@ public class GrabItem : MonoBehaviour
             }
             
             // Send a raycast from center point
-            Ray cameraRay = playerCamera.ViewportPointToRay(Vector3.one * 0.5f);
             if (Physics.Raycast(cameraRay, out RaycastHit hit, pickupRange))
             {
                 // Check if raycast hit an object with a rigidbody
@@ -58,7 +102,7 @@ public class GrabItem : MonoBehaviour
         }
         
         // Throw object
-        if (Input.GetKeyDown(KeyCode.T))
+        if (Input.GetKeyDown(GameManager.GetKeyCodesFromAxis("Throw")[0]))
         {
             // Check if object is in hand
             if (currentObject)
@@ -75,20 +119,15 @@ public class GrabItem : MonoBehaviour
         }
         
         // Rotate Object
-        if(Input.GetKey(GameManager.getInstance().objectRotateButton))
-        {
-            // Check if object is in hand
-            if (currentObject)
-            {
-                // Rotate object
-                currentObject.freezeRotation = true;
+        if(Input.GetKey(GameManager.GetKeyCodesFromAxis("Rotate")[0]) && currentObject) {
+            // Rotate object
+            currentObject.freezeRotation = true;
                 
-                float rotatingX = Input.GetAxis("Mouse X") * rotatingSpeed * Mathf.Deg2Rad;
-                float rotatingY = Input.GetAxis("Mouse Y") * rotatingSpeed * Mathf.Deg2Rad;
+            float rotatingX = Input.GetAxis("Mouse X") * rotatingSpeed * Mathf.Deg2Rad;
+            float rotatingY = Input.GetAxis("Mouse Y") * rotatingSpeed * Mathf.Deg2Rad;
 
-                currentObject.transform.Rotate(Vector3.up, -rotatingX);
-                currentObject.transform.Rotate(Vector3.right, rotatingY);
-            }
+            currentObject.transform.Rotate(Vector3.up, -rotatingX);
+            currentObject.transform.Rotate(Vector3.right, rotatingY);
         }
 
     }
