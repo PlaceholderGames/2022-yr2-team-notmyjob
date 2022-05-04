@@ -25,16 +25,16 @@ public class puzzle1 : MonoBehaviour
         {
             anim.GetComponent<Animator>().enabled = true;
             other.transform.rotation = gameObject.transform.rotation;
+            if (hasBenPlayed == false)
+            {
+                gameObject.GetComponent<AudioSource>().Play();
+                hasBenPlayed = true;
+            }
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
         anim.GetComponent<Animator>().enabled = false;
-        if (hasBenPlayed == false)
-        {
-            gameObject.GetComponent<AudioSource>().Play();
-            hasBenPlayed = true;
-        }
     }
 }

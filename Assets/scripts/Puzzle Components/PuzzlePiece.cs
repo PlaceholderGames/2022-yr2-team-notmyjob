@@ -8,9 +8,10 @@ public class PuzzlePiece : MonoBehaviour
     public string PuzzleCode;
     [SerializeField] Transform spawnpoint;
     [SerializeField] GameObject altar;
+    [SerializeField] AudioSource src;
     void Start()
     {
-
+        src = gameObject.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -32,7 +33,8 @@ public class PuzzlePiece : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        gameObject.GetComponent<AudioSource>().Play();
+        //gameObject.GetComponent<AudioSource>().Play();
+        src.Play();
     }
 
 }

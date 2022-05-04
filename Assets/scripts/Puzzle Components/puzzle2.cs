@@ -23,7 +23,7 @@ public class puzzle2 : MonoBehaviour
         HasBennPlayed = false;
     }
 
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         string fornow = other.GetComponent<PuzzlePiece>().PuzzleCode;
         if (fornow == this.PuzzleCode && hasSpawned == false)

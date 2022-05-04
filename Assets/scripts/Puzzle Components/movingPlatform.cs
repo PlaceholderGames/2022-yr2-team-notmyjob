@@ -14,7 +14,7 @@ public class movingPlatform : MonoBehaviour
         print(other);
         if (other == Player)
         {
-            Player_Pos.transform.parent = transform;
+            Player_Pos.transform.parent = gameObject.transform;
         }
     }
 
