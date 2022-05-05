@@ -126,5 +126,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PuzzleCode: None
+  howFar: 200
   spawnpoint: {fileID: 0}
   altar: {fileID: 0}
+  src: {fileID: 0}

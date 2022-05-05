@@ -6,6 +6,7 @@ public class PuzzlePiece : MonoBehaviour
 {
     // Start is called before the first frame update
     public string PuzzleCode;
+    [SerializeField] float howFar;
     [SerializeField] Transform spawnpoint;
     [SerializeField] GameObject altar;
     [SerializeField] AudioSource src;
@@ -19,7 +20,7 @@ public class PuzzlePiece : MonoBehaviour
     {
         float distance = Vector3.Distance(altar.transform.position, transform.position);
 
-        if (distance >= 200)
+        if (distance >= howFar)
         {
             Transform temp = transform.parent;
             Destroy(gameObject);

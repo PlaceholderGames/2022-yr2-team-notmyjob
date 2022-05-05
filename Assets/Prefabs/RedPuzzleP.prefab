@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &7387597763282564000
+--- !u!1 &419267490965100448
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,49 +8,49 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 637797745297044582}
-  - component: {fileID: 6341418516840523353}
-  - component: {fileID: 3714939491494384987}
-  - component: {fileID: 2428373329061729580}
-  - component: {fileID: 9179161918518182043}
-  - component: {fileID: 764723721188803814}
-  - component: {fileID: 5779806316794996925}
+  - component: {fileID: 2246109797374451388}
+  - component: {fileID: 6778805992067846487}
+  - component: {fileID: 1680782803484809701}
+  - component: {fileID: 4456712837775586995}
+  - component: {fileID: 1508619772063252985}
+  - component: {fileID: 8699952059045293319}
+  - component: {fileID: 4853169339129316247}
   m_Layer: 0
-  m_Name: Puzzle_Piece5
-  m_TagString: Untagged
+  m_Name: RedPuzzleP
+  m_TagString: ScalableObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &637797745297044582
+--- !u!4 &2246109797374451388
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7387597763282564000}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 57.64, y: 26.65, z: 151.61}
+  m_GameObject: {fileID: 419267490965100448}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 17.382, y: 6.383, z: -26.23}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &6341418516840523353
+--- !u!33 &6778805992067846487
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7387597763282564000}
+  m_GameObject: {fileID: 419267490965100448}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &3714939491494384987
+--- !u!23 &1680782803484809701
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7387597763282564000}
+  m_GameObject: {fileID: 419267490965100448}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -63,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a35c5da90a51d6043bf6f8bd5ea6c490, type: 2}
+  - {fileID: 2100000, guid: 3140e918f883f964487a3e6c1401dbc2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -85,26 +85,43 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &2428373329061729580
+--- !u!65 &4456712837775586995
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7387597763282564000}
+  m_GameObject: {fileID: 419267490965100448}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &9179161918518182043
+--- !u!114 &1508619772063252985
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 419267490965100448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3b09db5bff15c0499f43dcbf5eb0746, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PuzzleCode: red
+  howFar: 300
+  spawnpoint: {fileID: 0}
+  altar: {fileID: 0}
+  src: {fileID: 4853169339129316247}
+--- !u!54 &8699952059045293319
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7387597763282564000}
+  m_GameObject: {fileID: 419267490965100448}
   serializedVersion: 2
   m_Mass: 1
   m_Drag: 0
@@ -114,17 +131,17 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!82 &764723721188803814
+--- !u!82 &4853169339129316247
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7387597763282564000}
+  m_GameObject: {fileID: 419267490965100448}
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 95fbc1bfe57dbc541900d84343f3ae6a, type: 3}
+  m_audioClip: {fileID: 8300000, guid: df633b3075c06cc499d075485ad63377, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -135,7 +152,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 10
+  MaxDistance: 500
   Pan2D: 0
   rolloffMode: 1
   BypassEffects: 0
@@ -210,20 +227,3 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &5779806316794996925
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7387597763282564000}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d3b09db5bff15c0499f43dcbf5eb0746, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PuzzleCode: None
-  howFar: 200
-  spawnpoint: {fileID: 0}
-  altar: {fileID: 0}
-  src: {fileID: 764723721188803814}

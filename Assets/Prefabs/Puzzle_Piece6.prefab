@@ -110,8 +110,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PuzzleCode: BasketBall
+  howFar: 200
   spawnpoint: {fileID: 0}
   altar: {fileID: 0}
+  src: {fileID: 0}
 --- !u!54 &6233410842553186341
 Rigidbody:
   m_ObjectHideFlags: 0
