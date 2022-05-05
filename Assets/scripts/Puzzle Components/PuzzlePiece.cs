@@ -6,6 +6,7 @@ public class PuzzlePiece : MonoBehaviour
 {
     // Start is called before the first frame update
     public string PuzzleCode;
+    public float mass;
     [SerializeField] float howFar;
     [SerializeField] Transform spawnpoint;
     [SerializeField] GameObject altar;
