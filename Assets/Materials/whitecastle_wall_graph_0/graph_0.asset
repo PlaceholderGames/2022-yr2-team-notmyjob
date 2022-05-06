@@ -159,8 +159,7 @@ MonoBehaviour:
     GenerateAllOutputs: 0
     GenerateAllMipmaps: 0
     DefaultPreset: " <sbspreset pkgurl=\"pkg://Castle_wall\" label=\"\" >\n  <presetinput
-      identifier=\"$outputsize\" uid=\"2785382136\" type=\"8\" value=\"10,10\" />\n
-      </sbspreset>\n"
+      identifier=\"$outputsize\" uid=\"2785382136\" type=\"8\" value=\"10,10\" />\n</sbspreset>\n"
     CurrentStatePreset: " <sbspreset pkgurl=\"pkg://Castle_wall\" label=\"\" >\n 
       <presetinput identifier=\"$outputsize\" uid=\"2785382136\" type=\"8\" value=\"10,10\"
       />\n  <presetinput identifier=\"normal_intensity\" uid=\"3378532536\" type=\"0\"
