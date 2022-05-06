@@ -28,7 +28,7 @@ public class GrabItem : MonoBehaviour
         playerCamera = Camera.main;
         AudioSource src = gameObject.GetComponent<AudioSource>();
 
-        string pickupImage = "ControllerPrompts/KeyboardMouse/Dark/Mouse2_Key_Dark";
+        string pickupImage = "ControllerPrompts/KeyboardMouse/Dark/E_Key_Dark";
         pickupUI.transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(pickupImage);
         
         string throwImage = "ControllerPrompts/KeyboardMouse/Dark/T_Key_Dark";
@@ -52,7 +52,7 @@ public class GrabItem : MonoBehaviour
         // Player is not holding an object
         if (currentObject == null)
         {
-            bool canPickup = Physics.Raycast(cameraRay, out RaycastHit hitInfo, pickupRange);
+            bool canPickup = Physics.Raycast(cameraRay, out RaycastHit hitInfo, pickupRange) && !hitInfo.transform.GetComponent<Projectile>();
             pickupUI.GetComponentInChildren<TMPro.TMP_Text>().text = "Pickup";
             pickupUI.SetActive(canPickup && hitInfo.rigidbody != null);
             throwUI.SetActive(false);
