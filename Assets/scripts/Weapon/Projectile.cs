@@ -35,6 +35,8 @@ public class Projectile : MonoBehaviour
 
     void Update()
     {
+        PlayerController player = GameManager.getInstance().getPlayer();
+        
         // Add force to projectile;
         rigidbody.AddRelativeForce(direction * force);
 
