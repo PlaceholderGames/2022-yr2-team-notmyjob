@@ -6,6 +6,10 @@ TagManager:
   tags:
   - ScalableObject
   - Level4_Door_Puzzle
+  - rook
+  - bishop
+  - pawn
+  - knight
   layers:
   - Default
   - TransparentFX
