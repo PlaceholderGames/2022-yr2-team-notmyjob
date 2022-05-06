@@ -22,10 +22,10 @@ public class endGame : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        print($"bishop  {Wbishop}");
-        print($"rook  {Wrook}");
-        print($"knight  {Bknight}");
-        print($"pawn  {Bpawn}");
+        // print($"bishop  {Wbishop}");
+        // print($"rook  {Wrook}");
+        // print($"knight  {Bknight}");
+        // print($"pawn  {Bpawn}");
 
         if (Wbishop && Wrook && Bknight && Bpawn)
         {

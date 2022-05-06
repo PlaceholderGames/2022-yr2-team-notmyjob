@@ -49,6 +49,7 @@ public class Puzzle4 : MonoBehaviour
             hasBeenPlayed = true;
            var whydoihavetodothis = Instantiate(Bishop, spawnforBishop.position, Quaternion.identity);
             whydoihavetodothis.transform.rotation = Quaternion.Euler(new Vector3(-90, 0, 0));
+            whydoihavetodothis.transform.localScale = new Vector3(128 * 0.25f, 128 * 0.25f, 128 * 0.25f);
             whydoihavetodothis.AddComponent<Rigidbody>();
             whydoihavetodothis.AddComponent<ScalableObject>();
             whydoihavetodothis.GetComponent<MeshCollider>().convex = true;
