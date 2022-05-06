@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - ScalableObject
+  - Level4_Door_Puzzle
   layers:
   - Default
   - TransparentFX

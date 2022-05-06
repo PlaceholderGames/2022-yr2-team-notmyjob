@@ -28,6 +28,7 @@ public class Elevator : MonoBehaviour {
     private float tTotal;
     private bool isMoving;
     private float moveDirection;
+    private int nextFloor;
 
 
     // Use this for initialization
@@ -90,8 +91,7 @@ public class Elevator : MonoBehaviour {
     /// Start moving down one floor
     /// </summary>
     public void StartMoveDown() {
-        if (isMoving)
-            return;
+        if(isMoving) return;
 
         isMoving = true;
         moveDirection = -1;
@@ -111,7 +111,6 @@ public class Elevator : MonoBehaviour {
         else {
             StartMoveDown ();
         }
-
     }
 }
 

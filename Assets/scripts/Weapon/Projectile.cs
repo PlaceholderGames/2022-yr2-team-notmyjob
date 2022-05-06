@@ -90,7 +90,7 @@ public class Projectile : MonoBehaviour
         }
 
         // Destroy gameObject when done.
-        Destroy(gameObject);
+        if(other.GetComponent<ScalableObject>()) Destroy(gameObject);
     }
 }
 
