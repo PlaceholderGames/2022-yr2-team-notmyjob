@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
     /// the game should be paused or not.
     /// </summary>
     private bool _paused = false;
-
+    
 
     /// <summary>
     /// This property allows the game to globally access
@@ -151,7 +151,7 @@ public class GameManager : MonoBehaviour
         foreach (GameObject scalableObject in scalableObjects)
         {
             // Add ScalableObject component if it doesn't exist
-            if (scalableObject.GetComponent<ScalableObject>() == null)
+            if (!scalableObject.GetComponent<ScalableObject>())
             {
                 scalableObject.AddComponent<ScalableObject>();
             }
