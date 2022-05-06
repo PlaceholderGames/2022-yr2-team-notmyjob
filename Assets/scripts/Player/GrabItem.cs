@@ -23,24 +23,19 @@ public class GrabItem : MonoBehaviour
     private Rigidbody lastObject;
     private Rigidbody currentObject;
 
-    private string getSpritePath(string name)
-    {
-        return $"ControllerPrompts/KeyboardMouse/{name.Split('_')[name.Split('_').Length - 1]}/{name}";
-    }
-    
     private void Start()
     {
         playerCamera = Camera.main;
         AudioSource src = gameObject.GetComponent<AudioSource>();
-        
-        string pickupImage = GameManager.GetControllerName(GameManager.GetKeyCodesFromAxis("Hold")[0]);
-        pickupUI.transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(getSpritePath(pickupImage));
-        
-        string throwImage = GameManager.GetControllerName(GameManager.GetKeyCodesFromAxis("Throw")[0]);
-        throwUI.transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(getSpritePath(throwImage));
 
-        string rotateImage = GameManager.GetControllerName(GameManager.GetKeyCodesFromAxis("Rotate")[0]);
-        rotateUI.transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(getSpritePath(rotateImage));
+        string pickupImage = "ControllerPrompts/KeyboardMouse/Dark/Mouse2_Key_Dark";
+        pickupUI.transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(pickupImage);
+        
+        string throwImage = "ControllerPrompts/KeyboardMouse/Dark/T_Key_Dark";
+        throwUI.transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(throwImage);
+
+        string rotateImage = "ControllerPrompts/KeyboardMouse/Dark/R_Key_Dark";
+        rotateUI.transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(rotateImage);
             
         pickupUI.SetActive(false);
         throwUI.SetActive(false);
@@ -73,7 +68,7 @@ public class GrabItem : MonoBehaviour
         }
 
         // Pickup or drop object
-        if (Input.GetKeyDown(GameManager.GetKeyCodesFromAxis("Hold")[0]))
+        if (GameManager.getInstance().getPlayer().getPlayerInput().handleButtonInput("Hold", InputMode.PRESS))
         {
             // Check if there's already an object in hand
             if (currentObject)
@@ -104,7 +99,7 @@ public class GrabItem : MonoBehaviour
         }
         
         // Throw object
-        if (Input.GetKeyDown(GameManager.GetKeyCodesFromAxis("Throw")[0]))
+        if (GameManager.getInstance().getPlayer().getPlayerInput().handleButtonInput("Throw", InputMode.PRESS))
         {
             // Check if object is in hand
             if (currentObject)
@@ -121,7 +116,7 @@ public class GrabItem : MonoBehaviour
         }
         
         // Rotate Object
-        if(Input.GetKey(GameManager.GetKeyCodesFromAxis("Rotate")[0]) && currentObject) {
+        if(GameManager.getInstance().getPlayer().getPlayerInput().handleButtonInput("Rotate", InputMode.HOLD) && currentObject) {
             // Rotate object
             currentObject.freezeRotation = true;
                 

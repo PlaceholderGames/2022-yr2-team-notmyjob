@@ -25,7 +25,7 @@ public class Projectile : MonoBehaviour
 
     // Direction of the projectile;
     public Vector3 direction;
-    new Rigidbody rigidbody;
+    Rigidbody rigidbody;
 
     void Start()
     {

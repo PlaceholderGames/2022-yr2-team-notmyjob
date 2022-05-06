@@ -121,6 +121,7 @@ public class Elevator : MonoBehaviour {
 }
 
 // End of Domiii's script
+#if UNITY_EDITOR
 [CustomEditor(typeof(Elevator))]
 public class ElevatorEditor : Editor {
 
@@ -144,3 +145,4 @@ public class ElevatorEditor : Editor {
         
     }
 }
+#endif
