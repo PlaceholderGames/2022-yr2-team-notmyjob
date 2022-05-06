@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Respawn_Player : MonoBehaviour
+public class Respawn : MonoBehaviour
 {
     // This will hold the position of the Spawn Point for the player
     [SerializeField] Transform spawnPoint;
@@ -14,6 +14,11 @@ public class Respawn_Player : MonoBehaviour
         if (other.tag == "Player")
         {
             other.transform.position = spawnPoint.position;
+        }
+
+        if (other.GetComponent<RespawnPoint>())
+        {
+            other.transform.position = other.transform.GetComponent<RespawnPoint>().point.position;
         }
     }
 }

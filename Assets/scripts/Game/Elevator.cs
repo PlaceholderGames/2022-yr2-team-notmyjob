@@ -21,6 +21,7 @@ public class Elevator : MonoBehaviour {
     public float Speed = 1.0f;
     public int Floor = 0;
     public int MaxFloor = 1;
+    public int MinFlooor = 0;
     public Transform moveTransform;
     
     [SerializeField] private bool needsPlayer = false;
@@ -80,6 +81,8 @@ public class Elevator : MonoBehaviour {
     /// Start moving up one floor
     /// </summary>
     public void StartMoveUp() {
+        if (Floor >= MaxFloor) return;
+        
         if (isMoving)
             return;
 
@@ -90,7 +93,10 @@ public class Elevator : MonoBehaviour {
     /// <summary>
     /// Start moving down one floor
     /// </summary>
-    public void StartMoveDown() {
+    public void StartMoveDown()
+    {
+        if (Floor <= MinFlooor) return;
+        
         if(isMoving) return;
 
         isMoving = true;
