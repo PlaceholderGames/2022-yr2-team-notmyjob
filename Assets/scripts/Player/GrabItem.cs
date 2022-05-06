@@ -20,6 +20,7 @@ public class GrabItem : MonoBehaviour
     [SerializeField] AudioClip _pickup, _putdown, _throw;
     [SerializeField] AudioSource src;
 
+    private Rigidbody lastObject;
     private Rigidbody currentObject;
 
     private string getSpritePath(string name)
@@ -81,6 +82,7 @@ public class GrabItem : MonoBehaviour
                 currentObject.useGravity = true;
                 src.clip = _putdown;
                 src.PlayOneShot(_putdown);
+                lastObject = currentObject;
                 currentObject = null;
                 return;
             }
@@ -107,13 +109,13 @@ public class GrabItem : MonoBehaviour
             // Check if object is in hand
             if (currentObject)
             {
-                
                 // Throw object using force
                 currentObject.useGravity = true;
                 currentObject.freezeRotation = false;
                 src.clip = _throw;
                 src.PlayOneShot(_throw);
                 currentObject.AddForce(playerCamera.transform.forward * throwDistance, ForceMode.VelocityChange);
+                lastObject = currentObject;
                 currentObject = null;
             }
         }
@@ -159,6 +161,11 @@ public class GrabItem : MonoBehaviour
     public Rigidbody getGrabbedObject()
     {
         return currentObject;
+    }
+    
+    public Rigidbody getLastGrabbedObject()
+    {
+        return lastObject;
     }
 }
 

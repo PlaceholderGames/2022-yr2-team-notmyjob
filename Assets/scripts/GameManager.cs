@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.Serialization;
 using UnityEditor;
 using UnityEngine;
@@ -15,7 +16,7 @@ public class GameManager : MonoBehaviour
     /// the game should be paused or not.
     /// </summary>
     private bool _paused = false;
-
+    
 
     /// <summary>
     /// This property allows the game to globally access
@@ -147,11 +148,19 @@ public class GameManager : MonoBehaviour
     private void OnInstanceInitialized()
     {
         // Add ScalableObject component onto GameObjects with ScalableObject tag
-        GameObject[] scalableObjects = GameObject.FindGameObjectsWithTag("ScalableObject");
-        foreach (GameObject scalableObject in scalableObjects)
+        List<GameObject> scalableObjectsObj = GameObject.FindGameObjectsWithTag("ScalableObject").ToList();
+        ScalableObject[] scalableObjects = GameObject.FindObjectsOfType<ScalableObject>();
+        
+        foreach(ScalableObject scalableObject in scalableObjects)
+        {
+            if(!scalableObjectsObj.Contains(scalableObject.gameObject)) scalableObjectsObj.Add(scalableObject.gameObject);
+        }
+            
+        
+        foreach (GameObject scalableObject in scalableObjectsObj)
         {
             // Add ScalableObject component if it doesn't exist
-            if (scalableObject.GetComponent<ScalableObject>() == null)
+            if (!scalableObject.GetComponent<ScalableObject>())
             {
                 scalableObject.AddComponent<ScalableObject>();
             }
